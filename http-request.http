@@ -1,0 +1,18 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+POST http://localhost:9001/books
+content-type: application/json
+
+{
+    "isbn": "1234567890",
+    "title": "Spring Boot in Action",
+    "author": "Craig Walls",
+    "price": 29.99
+}
+
+###
+GET http://localhost:9001/books/1234567890
+content-type: application/json
