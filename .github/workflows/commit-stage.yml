@@ -5,7 +5,7 @@ jobs:
   build: # 고유 식별자
     name: Build and Test # 작업 친화적인 명칭
     runs-on: ubuntu-22.04 # 작업 실행의 머신 유형
-    permission: # 작업에 부여된 권한
+    permissions: # 작업에 부여된 권한
       contents: read # 현재 깃 저장소를 체크 아웃할 수 있는 권한
       security-events: write # 깃허브에 보안 이벤트를 제출할 수 있는 권한
     steps:
