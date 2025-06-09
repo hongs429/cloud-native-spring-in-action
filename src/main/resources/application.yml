@@ -8,6 +8,12 @@ spring:
       uri: http://localhost:8888
       request-connect-timeout: 5000
       request-read-timeout: 5000
+      fail-fast: true
+      retry:
+        max-attempts: 6 # 최대 재시도
+        initial-interval: 1000 # 최초 재시도 지연 시간
+        max-interval: 2000 # 재시도 지연 최대 시간
+        multiplier: 1.1 # 지연시간 exponential
 server:
   port: 9001
   tomcat:
@@ -32,3 +38,9 @@ springdoc:
 
 polar:
   greeting: welcome to the local book catalog~!
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,info # HTTP를 통해서 /actuator/refresh 엔드포인트를 노출한다.
