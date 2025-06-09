@@ -26,7 +26,7 @@ jobs:
           severity-cutoff: high
           acs-report-enable: true
       - name: Upload vulnerability report
-        uses: github/codeql-action/upload-serif@v2
+        uses: github/codeql-action/upload-sarif@v2
         if: success() || failure() # 성공 실패여부와 상관없이 리포트 생성
         with:
           serif-file: ${{ steps.scan.outputs.sarif }}
