@@ -1,0 +1,36 @@
+name: Commit Stage # 워크플로우 이름
+on: push # 새 코드를 저장소로 푸시하면 워크플로를 시작하는 트리거
+
+jobs:
+  build: # 고유 식별자
+    name: Build and Test # 작업 친화적인 명칭
+    runs-on: ubuntu-22.04 # 작업 실행의 머신 유형
+    permission: # 작업에 부여된 권한
+      contents: read # 현재 깃 저장소를 체크 아웃할 수 있는 권한
+      security-events: write # 깃허브에 보안 이벤트를 제출할 수 있는 권한
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with: # 액션의 내용을 정의. 보통 액션에서 제공하는 키값에 정보를 입력
+          distribution: temurin
+          java-version: 17
+          cache: gradle
+      - name: Code vulnerability scanning
+        uses: anchore/scan-action@v3
+        id: scan # 현재 단계의 식별자를 할당. 이후 단계에서 참고 가능
+        with:
+          path: "${{ github.workspace }}"
+          fail-build: false
+          severity-cutoff: high
+          acs-report-enable: true
+      - name: Upload vulnerability report
+        uses: github/codeql-action/upload-serif@v2
+        if: success() || failure() # 성공 실패여부와 상관없이 리포트 생성
+        with:
+          serif-file: ${{ steps.scan.outputs.sarif }}
+      - name: Build, unit tets and integration tests
+        run: |
+          chmod +x gradlew
+          ./gradlew build
