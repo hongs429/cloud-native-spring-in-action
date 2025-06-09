@@ -24,12 +24,11 @@ jobs:
           path: "${{ github.workspace }}"
           fail-build: false
           severity-cutoff: high
-          acs-report-enable: true
       - name: Upload vulnerability report
         uses: github/codeql-action/upload-sarif@v3
-        if: success() || failure() # 성공 실패여부와 상관없이 리포트 생성
+        if: success() || failure()
         with:
-          sarif-file: ${{ steps.scan.outputs.sarif }}
+          sarif_file: ${{ steps.scan.outputs.sarif_file }}
       - name: Build, unit tets and integration tests
         run: |
           chmod +x gradlew
