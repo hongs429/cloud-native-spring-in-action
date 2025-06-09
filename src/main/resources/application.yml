@@ -19,3 +19,6 @@ springdoc:
   paths-to-match: /**
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
+
+polar:
+  greeting: welcome to the local book catalog~!
