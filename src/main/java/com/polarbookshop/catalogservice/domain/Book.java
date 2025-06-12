@@ -1,5 +1,6 @@
 package com.polarbookshop.catalogservice.domain;
 
+import com.polarbookshop.catalogservice.entity.BookEntity;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
@@ -15,4 +16,8 @@ public record Book(
         @Positive(message = "{book.price.positive}")
         Double price
 ) {
+
+        public BookEntity toEntity() {
+                return BookEntity.of(isbn, title, author, price);
+        }
 }
