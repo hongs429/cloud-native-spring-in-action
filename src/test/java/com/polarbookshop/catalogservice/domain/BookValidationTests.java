@@ -7,7 +7,6 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import java.util.Set;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +27,7 @@ public class BookValidationTests {
                 "1234567890",
                 "title",
                 "author",
+                "publisher",
                 20.22
         );
 
@@ -42,6 +42,7 @@ public class BookValidationTests {
                 "111",
                 "title",
                 "author",
+                "publisher",
                 22.0
         );
 
