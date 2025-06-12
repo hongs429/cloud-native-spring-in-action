@@ -1,4 +1,3 @@
-DROP TABLE IF EXISTS book;
 CREATE TABLE book
 (
     id                 BIGSERIAL PRIMARY KEY NOT NULL,
@@ -8,5 +7,5 @@ CREATE TABLE book
     title              varchar(255)          NOT NULL,
     created_date       timestamp             NOT NULL,
     last_modified_date timestamp             NOT NULL,
-    version            bigint               NOT NULL
+    version            bigint                NOT NULL
 );

@@ -29,6 +29,7 @@ repositories {
 ext {
     set('springCloudVersion', "2025.0.0")
     set('testcontainersVersion', "1.19.8")
+    set('flywayVersion', "11.9.1")
 }
 
 dependencies {
@@ -51,6 +52,8 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
+    // Flyway
+    runtimeOnly "org.flywaydb:flyway-database-postgresql:${flywayVersion}"
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

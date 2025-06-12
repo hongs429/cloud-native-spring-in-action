@@ -18,6 +18,8 @@ public record BookEntity(
 
         String author,
 
+        String publisher,
+
         Double price,
 
         @CreatedDate
@@ -30,9 +32,9 @@ public record BookEntity(
         Long version
 ) {
 
-    public static BookEntity of(String isbn, String title, String author, Double price) {
+    public static BookEntity of(String isbn, String title, String author, String publisher, Double price) {
         return new BookEntity(
-                null, isbn, title, author, price, null, null, null
+                null, isbn, title, author, publisher, price, null, null, null
         );
     }
 }

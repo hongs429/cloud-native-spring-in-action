@@ -19,7 +19,7 @@ class CatalogServiceApplicationTests {
     @Test
     void whenGetRequestWithIdThenBookReturned() {
         var bookIsbn = "1231231230";
-        var bookToCreate = BookEntity.of(bookIsbn, "Title", "Author", 9.90);
+        var bookToCreate = BookEntity.of(bookIsbn, "Title", "Author", "publisher",9.90);
         BookEntity expectedBook = webTestClient
                 .post()
                 .uri("/books")
@@ -42,7 +42,7 @@ class CatalogServiceApplicationTests {
 
     @Test
     void whenPostRequestThenBookCreated() {
-        var expectedBook = BookEntity.of("1231231231", "Title", "Author", 9.90);
+        var expectedBook = BookEntity.of("1231231231", "Title", "Author", "publisher", 9.90);
 
         webTestClient
                 .post()
@@ -59,7 +59,7 @@ class CatalogServiceApplicationTests {
     @Test
     void whenPutRequestThenBookUpdated() {
         var bookIsbn = "1231231232";
-        var bookToCreate = BookEntity.of(bookIsbn, "Title", "Author", 9.90);
+        var bookToCreate = BookEntity.of(bookIsbn, "Title", "Author", "publisher", 9.90);
         BookEntity createdBook = webTestClient
                 .post()
                 .uri("/books")
@@ -69,7 +69,7 @@ class CatalogServiceApplicationTests {
                 .expectBody(BookEntity.class).value(book -> assertThat(book).isNotNull())
                 .returnResult().getResponseBody();
         var bookToUpdate = new BookEntity(createdBook.id(), createdBook.isbn(), createdBook.title(),
-                createdBook.author(), 7.95,
+                createdBook.author(), createdBook.publisher(), 7.95,
                 createdBook.createdDate(), createdBook.lastModifiedDate(), createdBook.version());
 
         webTestClient
@@ -87,7 +87,7 @@ class CatalogServiceApplicationTests {
     @Test
     void whenDeleteRequestThenBookDeleted() {
         var bookIsbn = "1231231233";
-        var bookToCreate = BookEntity.of(bookIsbn, "Title", "Author", 9.90);
+        var bookToCreate = BookEntity.of(bookIsbn, "Title", "Author", "publisher", 9.90);
         webTestClient
                 .post()
                 .uri("/books")

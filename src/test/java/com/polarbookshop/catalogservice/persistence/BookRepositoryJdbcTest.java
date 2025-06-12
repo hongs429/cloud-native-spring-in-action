@@ -29,7 +29,7 @@ class BookRepositoryJdbcTest {
     @Test
     void findBookByIsbnWhenExists() {
         String bookIsbn = "1231231231";
-        BookEntity book = BookEntity.of(bookIsbn, "title", "author", 25.05);
+        BookEntity book = BookEntity.of(bookIsbn, "title", "author", "publisher", 25.05);
         aggregateTemplate.insert(book);
         Optional<BookEntity> findBook = bookRepository.findByIsbn(bookIsbn);
 

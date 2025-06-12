@@ -17,8 +17,8 @@ public class BookDataLoader {
     @EventListener(ApplicationReadyEvent.class)
     public void loadData() {
         bookRepository.deleteAll();
-        BookEntity book1 = BookEntity.of("1231231231", "1Title", "1Author", 9.9);
-        BookEntity book2 = BookEntity.of("1231231230", "2Title", "2Author", 10.1);
+        BookEntity book1 = BookEntity.of("1231231231", "1Title", "1Author", "publisher1", 9.9);
+        BookEntity book2 = BookEntity.of("1231231230", "2Title", "2Author", "publisher1", 10.1);
 
         bookRepository.save(book1);
         bookRepository.save(book2);

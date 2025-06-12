@@ -13,11 +13,13 @@ public record Book(
         String title,
         @NotBlank(message = "{book.author.not-blank}")
         String author,
+        @NotBlank(message = "{book.publisher.not-blank}")
+        String publisher,
         @Positive(message = "{book.price.positive}")
         Double price
 ) {
 
         public BookEntity toEntity() {
-                return BookEntity.of(isbn, title, author, price);
+                return BookEntity.of(isbn, title, author, publisher, price);
         }
 }
