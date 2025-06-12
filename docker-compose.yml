@@ -13,6 +13,27 @@ services:
       - "5432:5432"
     volumes:
       - ./pgdata:/var/lib/postgresql/data
+    networks:
+      - catalog-network
+
+  catalog-service:
+    build:
+      context: .                # Dockerfile이 있는 경로
+    container_name: catalog-service
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://polar-postgres:5432/polardb_catalog
+      SPRING_PROFILES_ACTIVE: testdata
+    ports:
+      - "9001:9001"
+    networks:
+      - catalog-network
+    depends_on:
+      - db
 
 volumes:
   pgdata:
+
+networks:
+  catalog-network:
+    external: true
