@@ -41,7 +41,7 @@ jobs:
 
   package: # 고유 식별자
     name: Package and Publish
-    if: ${{ github.ref == 'ref/heads/main' }}  # 잡을 main 브랜치에 대해서만 실행한다
+    if: ${{ github.ref == 'refs/heads/main' }}  # 잡을 main 브랜치에 대해서만 실행한다
     needs: [build] # 실행 조건. build 식별자 단계가 수행된 이후에만 동작
     runs-on: ubuntu-22.04
     permissions:
