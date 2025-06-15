@@ -62,12 +62,12 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew bootBuildImage \
-          --imageName ${{env.REGISTRY}}/${{env.IMAGE_NAME}}/${{env.VERSION}}
+          --imageName ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{env.VERSION}}
       - name: OCI image vulnerability report
         uses: anchore/scan-action@v3
         id: scan
         with:
-          image: ${{env.REGISTRY}}/${{env.IMAGE_NAME}}/${{env.VERSION}}
+          image: ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{env.VERSION}}
           fail-build: false
           severity-cutoff: high
           acs-report-enable: true
@@ -83,6 +83,6 @@ jobs:
           username: ${{github.actor}} # 깃허브 액션이 제공하는 현재 사용자의 깃허브 유저명
           password: ${{secrets.GITHUB_TOKEN}} # 저장소와 인증하기 위해 필요한 토큰, 깃허브 액션이 제공
       - name: Publish container image
-        run: docker push ${{env.REGISTRY}}/${{env.IMAGE_NAME}}/${{env.VERSION}}
+        run: docker push ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{env.VERSION}}
 
 
