@@ -1,6 +1,18 @@
+server:
+  port: 9001
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      max: 50
+      min-spare: 5
+  shutdown: graceful # 우하한 종료 활성화
+
 spring:
   application:
     name: catalog-service
+  lifecycle:
+    timeout-per-shutdown-phase: 15s # 15초의 종료기간을 둔다.
   datasource:
     username: hongs
     password: 12341234
@@ -31,14 +43,6 @@ spring:
         initial-interval: 1000 # 최초 재시도 지연 시간
         max-interval: 2000 # 재시도 지연 최대 시간
         multiplier: 1.1 # 지연시간 exponential
-server:
-  port: 9001
-  tomcat:
-    connection-timeout: 2s
-    keep-alive-timeout: 15s
-    threads:
-      max: 50
-      min-spare: 5
 
 springdoc:
   swagger-ui:
