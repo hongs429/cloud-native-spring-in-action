@@ -6,13 +6,13 @@ services:
     container_name: polar-postgres
     restart: always
     environment:
-      POSTGRES_DB: polardb_catalog
       POSTGRES_USER: hongs
       POSTGRES_PASSWORD: 12341234
     ports:
       - "5432:5432"
     volumes:
       - ./pgdata:/var/lib/postgresql/data
+      - ./postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   catalog-service:
     image: catalog-service           # Dockerfile이 있는 경로
@@ -32,8 +32,8 @@ services:
       - db
 
   config-service:
-    image: "config-service"
-    container_name: "config-service"
+    image: config-service
+    container_name: config-service
     ports:
       - "8888:8888"
       - "9888:9888"
